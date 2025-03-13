@@ -1,0 +1,230 @@
+ {% extends 'base.html'%}
+    {% block content%}
+    {% if messages %}
+        {% for message in messages %}
+         {% if message.tags %}  <script>alert("{{ message }}")</script> {% endif %}
+
+        {% endfor %}
+
+    {% endif %}
+
+<div style="background: url('/media/img/images/home.jpeg'); background-repeat:no-repeat;background-size: cover;color: black;  ">
+
+		<br><br>
+<div class="container" style="background-color: white;width: 80%;-webkit-box-shadow: 0 0 5px 5px #b5adad;-moz-box-shadow: 0 0 5px 5px #b5adad; box-shadow: 0 0 5px 5px #b5adad; " >
+<form class="form-horizontal" action='/MissingPersons/' enctype="multipart/form-data"   method="POST" id="form1">
+  {% csrf_token %}
+  <center>
+  <div>
+    <h2 style="color: #449898">Raise Missing Complaint</h2>
+    <hr>
+    <br>
+  </div> 
+  </center> 
+
+   <div class="form-row">
+    <div class="col-md-4 text-left" style="margin-bottom:  10px">
+      <label style="color: black"  for="validationTooltip01">Full Name <span style="color: red">*</span></label>   
+      <input type="text" class="form-control" name="Name" id="Name" placeholder="Name" value="" required=""> 
+    </div>
+ 
+     <div class="col-md-4 text-left" style="margin-bottom: 10px">
+      <label style="color: black"  for="validationTooltip01">Contact Number <span style="color: red">*</span></label>   
+      <input id="contact" class="form-control sty" name="contact" placeholder="Eg.9998999899" value="" title="Contact Number" type="tel" minlength="10" maxlength="10" autocomplete="nope" required=""> 
+    </div>
+
+    <div class="col-md-4 text-left" style="margin-bottom: 10px">
+      <label style="color: black"  for="validationTooltip01">E-mail ID <span style="color: red">*</span></label>   
+      <input class="form-control "  id="emailid"  name="emailid" type="email" value="" placeholder="Eg.example@domain.com" title="E-mail ID" maxlength="100" autocomplete="nope" onkeyup="this.value=this.value.replace(/[^_a-zA-Z0-9@. ]/,'')" required=""> 
+    </div>
+
+  </div>
+
+
+     <div class="form-row">
+    <div class="col-md-4 text-left" style="margin-bottom:  10px">
+      <label style="color: black" for="address">Room No. / Street Name <span style="color: red">*</span></label><br>
+      <input id="doorno" class="form-control " name="doorno" type="text" value="" placeholder="Eg.1209" autocomplete="nope" title="Room No. / Street Name">
+    </div>
+ 
+     <div class="col-md-4 text-left" style="margin-bottom: 10px">
+      <label style="color: black"  for="validationTooltip01">Address <span style="color: red">*</span></label>   
+      <input id="address" class="form-control sty" name="address" value="" type="text" placeholder="Eg.Sector-1, Bandra, Mumbai" autocomplete="nope" title="Address" maxlength="200">
+                   
+    </div>
+
+    <div class="col-md-4 text-left" style="margin-bottom: 10px">
+      <label style="color: black"  for="validationTooltip01">City <span style="color: red">*</span></label>   
+      <input id="city" class="form-control " name="city" value="" title="City" placeholder="Eg.Mumbai" autocomplete="nope" type="text">
+    </div>
+
+  </div>
+
+
+
+     <div class="form-row">
+    <div class="col-md-4 text-left" style="margin-bottom:  10px">
+      <label style="color: black" for="address">State <span style="color: red">*</span></label><br>
+      <input id="state" class="form-control " name="state" value="" placeholder="Eg.Maharashtra" type="text" autocomplete="nope" title="State">
+    </div>
+ 
+     <div class="col-md-4 text-left" style="margin-bottom: 10px">
+      <label style="color: black"  for="validationTooltip01">Country <span style="color: red">*</span></label>   
+      <input id="country" class="form-control" name="country" value="" placeholder="Eg.India" type="text" autocomplete="nope" title="Country">
+    </div>
+
+    <div class="col-md-4 text-left" style="margin-bottom: 10px">
+      <label style="color: black"  for="validationTooltip01">Pin code <span style="color: red">*</span></label>   
+      <input id="Pincode" class="form-control " name="Pincode" value="" placeholder="Eg.400001" type="text" autocomplete="nope" title="Pin code" minlenght="6" maxlength="6">
+    </div>
+
+  </div>
+
+
+	<div class="form-row">
+	    <div class="col-md-12 text-left" style="margin-bottom:  10px">
+	      <label style="color: black" for="address">Missing Details <span style="color: red">*</span></label><br>
+	      <textarea id="Complaint" class="form-control " rows="4" name="Complaint" value=""  type="text"  placeholder="Complaint"></textarea>
+
+	    </div>
+  	</div>
+
+  	<div class="form-row">
+	    <div class="col-md-12 text-left" style="margin-bottom:  35px">
+	      <label style="color: black" for="address">Upload Photo of missing person <span style="color: red">*</span></label><br>
+	      <input type="file" name="Image_upload1" id="Image_upload1" class="form-control" name="fileToUpload" id="fileToUpload">
+
+	    </div>
+  	</div>
+
+
+
+  <center> 
+	<br>
+  	<input type="button" onclick="validate();" name="ButtonApply" value="Submit Complaint &#8250;&#8250;"  id="ButtonApply" class="btn btn-round btn-primary" />
+  	<br>
+  </center>
+
+</form>
+	<br>	<br>
+</div>
+
+
+<br>
+
+</div>
+
+
+
+<script type="text/javascript">
+	
+	function validate() {
+		
+		if(document.getElementById('Name').value != '')
+        {
+                                  
+         if(document.getElementById('contact').value != '')
+            {
+              if(document.getElementById('emailid').value != '')
+              {
+                
+                if(document.getElementById('doorno').value != '')
+                {
+                  
+                    if(document.getElementById('address').value != '')
+                    {
+                           if(document.getElementById('city').value != '')
+                            {
+                                if(document.getElementById('state').value != '')
+						        {
+						                                  
+						         if(document.getElementById('country').value != '')
+						            {
+						              if(document.getElementById('Pincode').value != '')
+						              {
+						                
+						                if( jQuery('#Image_upload1').val() != '')
+						                {
+						                  
+						                    if(document.getElementById('Complaint').value != '')
+						                    {
+
+						                    		 document.getElementById('form1').submit()
+						                                return true;						                      
+						                    }
+						                    else
+						                    {
+						                      alert("Please enter Complaint");
+						                      return false;
+						                    }						                  
+						                }
+						                else
+						                {
+						                  alert("Please Select files");
+						                  return false;
+						                }
+						              }
+						              else
+						              {
+						                alert("Please  enter Pincode");
+						                return false;
+						              }
+						            }     
+						            else
+						            {
+						              alert("Please Enter Country");
+						              return false;
+						            }						                
+						        }
+						        else
+						        {
+						          alert("Please enter state");
+						          return false;
+						        }
+                             }
+                            else
+                            {
+                              alert("Please enter  city");
+                              return false;
+                            }
+                      
+                    }
+                    else
+                    {
+                      alert("Please enter address");
+                      return false;
+                    }
+                  
+                }
+                else
+                {
+                  alert("Please enter doorno");
+                  return false;
+                }
+
+              }
+              else
+              {
+                alert("Please  enter email");
+                return false;
+              }
+            }     
+            else
+            {
+              alert("Please Enter contact");
+              return false;
+            }                
+        }
+        else
+        {
+          alert("Please enter Name");
+          return false;
+        }
+
+	}
+
+</script>
+
+
+
+{% endblock%}

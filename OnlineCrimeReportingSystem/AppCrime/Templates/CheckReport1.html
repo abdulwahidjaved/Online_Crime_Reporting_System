@@ -1,0 +1,89 @@
+ {% extends 'base.html'%}
+    {% block content%}
+    {% if messages %}
+        {% for message in messages %}
+         {% if message.tags %}  <script>alert("{{ message }}")</script> {% endif %}
+
+        {% endfor %}
+
+    {% endif %}
+
+
+
+
+<div style="background: url('/media/img/images/home.jpeg'); background-repeat:no-repeat;background-size: cover;color: white;height: 560px;  ">
+	<br>
+
+
+<div class="container-fluid" style="height: 150px;border-radius: 10px;background-color: white;margin: 5px; padding: 5px">
+	<div class="row ">
+		<div class="col-md-12">
+			 <div class="col-md-3"  style="height: 140px;border-radius: 10px;background-color: #5d9eb1;">
+			 	<div class="row">
+			 	<div class="col-md-8" style="margin-top: 25px;font-size: 24px;"><p>Theft</p></div>
+			 	<div class="col-md-4 text-center" style="margin-top: 25px;font-size: larger;"><i style="font-size: 28px;color: #efa51e; margin-right: 10px;margin-top: 5px" class="fas fa-chart-bar"></i></div>
+			 	</div>
+
+			 	<div style="margin-top: 35px; margin-left: 250px;font-size: larger;">
+			 		{{TheftCount}}/{{TotalCount}}
+			 	</div>
+			 </div>
+			 <div class="col-md-3" style="height: 140px;border-radius: 10px;background-color: #608c88;">
+			 	<div class="row">
+			 	<div class="col-md-8" style="margin-top: 25px;font-size: 24px;"><p>Forgery</p></div>
+			 	<div class="col-md-4 text-center" style="margin-top: 25px;font-size: larger;"><i style="font-size: 28px;color: #1cce7d;margin-right: 10px;margin-top: 5px" class="fas fa-chart-pie"></i></div>
+			 	</div>
+
+			 	<div style="margin-top: 35px; margin-left: 250px;font-size: larger;">
+			 		{{ForgeryCount}}/{{TotalCount}}
+			 	</div>
+			 </div>
+			 <div class="col-md-3" style="height: 140px;border-radius: 10px;background-color: #5d9eb1;">
+			 	<div class="row">
+			 	<div class="col-md-8" style="margin-top: 25px;font-size: 24px;"><p>Murder</p></div>
+			 	<div class="col-md-4 text-center" style="margin-top: 25px;font-size: larger;"><i style="font-size: 28px;color: #efa51e;margin-right: 10px;margin-top: 5px" class="fas fa-chart-bar"></i></div>
+			 	</div>
+
+			 	<div style="margin-top: 35px; margin-left: 250px;font-size: larger;">
+			 		{{MurderCount}}/{{TotalCount}}
+			 	</div>
+			 </div>
+			 <div class="col-md-3" style="height: 140px;border-radius: 10px;background-color: #608c88;">
+			 	<div class="row">
+			 	<div class="col-md-8" style="margin-top: 25px;font-size: 24px;"><p>Cyber Crime</p></div>
+			 	<div class="col-md-4 text-center" style="margin-top: 25px;font-size: larger;"><i style="font-size: 28px;color: #1cce7d;margin-right: 10px;margin-top: 5px" class="fas fa-chart-pie"></i></div>
+			 	</div>
+
+			 	<div style="margin-top: 35px; margin-left: 250px;font-size: larger;">
+			 		{{CyberCrimeCount}}/{{TotalCount}}
+			 	</div>
+			 </div>
+		</div>
+	</div>
+</div>
+
+
+
+
+<br>
+<div class="container-fluid" style="height: 350px;border-radius: 15px;background-color: white;color:black; padding: 5px;margin: 5px;">
+	<div>
+		<h3 style="margin-left: 20px">HEADLINES</h3>
+		<hr>
+
+		<div>
+			 
+	{% for or in Headline %}  
+		<i style="font-size: 28px;margin-right: 10px;margin-top: 5px" class="fas fa-arrow-circle-right"></i><spam style="color: #17985d; text-indent: 30px;font-size: x-large; text-transform: uppercase;">One Person Missing from {{ or.City }} on {{ or.DateofComplaint }}</spam>
+
+		<br>
+	{% endfor %} 
+		</div>
+	</div>
+</div>
+
+
+</div>
+
+
+{% endblock%}
